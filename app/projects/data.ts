@@ -164,7 +164,8 @@ export const projects: Project[] = [
       "An Android notes app with lockable private notes and a built-in to-do list, storing everything locally on the device.",
     tags: ["Java", "Android Studio", "SharedPreferences", "Mobile App"],
     art: "generic",
-    links: { apk: "/apks/NoteBook.apk" },
+    // links: { apk: "/apks/NoteBook.apk" },
+
     description:
       "A native Android notebook application for writing and organising notes, protecting private ones with a lock, and tracking daily tasks in a built-in to-do list.",
     overview: [
@@ -197,7 +198,7 @@ export const projects: Project[] = [
       "A women's safety app that sends your live location to trusted contacts by SMS in one tap, with a fake call feature and emergency helpline numbers built in.",
     tags: ["Java", "Android Studio", "SharedPreferences", "Safety App"],
     art: "generic",
-   links: { apk: "/apks/evetrack_v.apk" },
+  //  links: { apk: "/apks/evetrack_v.apk" },
     description:
       "A native Android application designed to help women respond quickly in unsafe situations. With a single tap, the app sends the user's current location to people they trust, and it also offers ways to get out of uncomfortable situations discreetly.",
     overview: [
