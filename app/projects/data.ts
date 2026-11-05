@@ -267,7 +267,7 @@ export const projects: Project[] = [
       "A chat app that connects people through a unique personal ID instead of a phone number, so you only talk to people you choose to share it with.",
     tags: ["React.js", "Node.js", "Chat App", "Privacy"],
     art: "generic",
-    links: {apk: "/apks/LinkChat.apk" },
+    
     description:
       "A web-based messaging application where every user gets a unique ID instead of linking their account to a mobile number. Share your ID with someone and you can start chatting, with no phone number exchange and no flood of unwanted requests.",
     overview: [
