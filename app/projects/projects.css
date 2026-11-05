@@ -368,3 +368,9 @@
   .pj-card-visual { height: 260px; }
   .pj-card-body { padding: 24px 22px 28px; }
 }
+.pj-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}

@@ -3,9 +3,9 @@ import "./globals.css";
 import "./animations.css";
 
 export const metadata: Metadata = {
-  title: "BVR Technologies | Software That Moves Business Forward",
+  title: "BVR GLOBAL TECHNOLOGIES | Software That Moves Business Forward",
   description:
-    "BVR Technologies Pvt. Ltd. builds modern websites and custom software solutions for startups and small businesses.",
+    "BVR GLOBAL TECHNOLOGIES Pvt. Ltd. builds modern websites and custom software solutions for startups and small businesses.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

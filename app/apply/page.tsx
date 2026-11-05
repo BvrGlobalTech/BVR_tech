@@ -36,25 +36,49 @@ export default function ApplyPage() {
   const update = (key: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm((f) => ({ ...f, [key]: e.target.value }));
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus("submitting");
-    setErrorMsg("");
+  // const handleSubmit = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   setStatus("submitting");
+  //   setErrorMsg("");
 
-    try {
-      const res = await fetch("https://formspree.io/f/mpppowej", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify(form),
-      });
-      if (!res.ok) throw new Error("Submission failed");
-      setStatus("success");
-      setForm(initial);
-    } catch (err) {
-      setStatus("error");
-      setErrorMsg("Something went wrong. Please try again or email us directly.");
-    }
-  };
+  //   try {
+  //     const res = await fetch("https://formspree.io/f/", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json", Accept: "application/json" },
+  //       body: JSON.stringify(form),
+  //     });
+  //     if (!res.ok) throw new Error("Submission failed");
+  //     setStatus("success");
+  //     setForm(initial);
+  //   } catch (err) {
+  //     setStatus("error");
+  //     setErrorMsg("Something went wrong. Please try again or email us directly.");
+  //   }
+  // };
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setStatus("submitting");
+  setErrorMsg("");
+
+  try {
+    const body = new URLSearchParams({
+      "form-name": "apply",
+      ...form,
+    }).toString();
+
+    const res = await fetch("/__forms.html", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body,
+    });
+    if (!res.ok) throw new Error("Submission failed");
+    setStatus("success");
+    setForm(initial);
+  } catch (err) {
+    setStatus("error");
+    setErrorMsg("Something went wrong. Please try again or email us directly.");
+  }
+};
 
   if (status === "success") {
     return (
@@ -103,38 +127,38 @@ export default function ApplyPage() {
             <div className="ap-row">
               <div className="ap-field">
                 <label htmlFor="name">Full name *</label>
-                <input id="name" type="text" required value={form.name} onChange={update("name")} placeholder="Your name" />
+                <input id="name" type="text"  name="name" required value={form.name} onChange={update("name")} placeholder="Your name" />
               </div>
               <div className="ap-field">
                 <label htmlFor="mobile">Mobile number *</label>
-                <input id="mobile" type="tel" required value={form.mobile} onChange={update("mobile")} placeholder="+91 90000 00000" />
+                <input id="mobile" type="tel" name="mobile" required value={form.mobile} onChange={update("mobile")} placeholder="+91 90000 00000" />
               </div>
             </div>
 
             <div className="ap-row">
               <div className="ap-field">
                 <label htmlFor="email">Email address *</label>
-                <input id="email" type="email" required value={form.email} onChange={update("email")} placeholder="you@example.com" />
+                <input id="email" type="email" name="email" required value={form.email} onChange={update("email")} placeholder="you@example.com" />
               </div>
               <div className="ap-field">
                 <label htmlFor="location">Location *</label>
-                <input id="location" type="text" required value={form.location} onChange={update("location")} placeholder="City, Country" />
+                <input id="location" type="text" name="location" required value={form.location} onChange={update("location")} placeholder="City, Country" />
               </div>
             </div>
 
             <div className="ap-field">
               <label htmlFor="about">About yourself *</label>
-              <textarea id="about" rows={4} required value={form.about} onChange={update("about")} placeholder="A short introduction — your background, interests and what you're looking for." />
+              <textarea id="about" rows={4} name="about" required value={form.about} onChange={update("about")} placeholder="A short introduction — your background, interests and what you're looking for." />
             </div>
 
             <div className="ap-field">
               <label htmlFor="skills">Skills *</label>
-              <input id="skills" type="text" required value={form.skills} onChange={update("skills")} placeholder="e.g. React, Node.js, MongoDB, UI design" />
+              <input id="skills" type="text" name="skills" required value={form.skills} onChange={update("skills")} placeholder="e.g. React, Node.js, MongoDB, UI design" />
             </div>
 
             <div className="ap-field">
               <label htmlFor="resumeUrl">Resume link *</label>
-              <input id="resumeUrl" type="url" required value={form.resumeUrl} onChange={update("resumeUrl")} placeholder="Google Drive / Dropbox / portfolio link" />
+              <input id="resumeUrl" type="url" name="resumeUrl"  required value={form.resumeUrl} onChange={update("resumeUrl")} placeholder="Google Drive / Dropbox / portfolio link" />
               <small className="ap-hint">Paste a shareable link to your resume (PDF). We&apos;ll review it from there.</small>
             </div>
 

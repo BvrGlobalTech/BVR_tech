@@ -39,13 +39,13 @@ const founder: Founder = {
 
 const coFounders: Person[] = [
   {
-    name: "Siddartha Rao",
+    name: "SIDDARTHA RAO",
     role: "Co-Founder",
     image: cofounderPhoto,
     linkedin: "https://www.linkedin.com/in/siddartha-rao-721868287/",
   },
   {
-    name: "Vaishnavi ",
+    name: "VAISHNAVI AITHA",
     role: "Co-Founder",
     image: vaish,
     linkedin: "https://www.linkedin.com/in/vaishnavi-aitha-2a20a8264",
@@ -69,7 +69,8 @@ export default function Founders() {
               Meet the <span>founders.</span>
             </h2>
           </div>
-          <p>The people behind BVR Global Technologies, working closely with you from the first conversation to launch.</p>
+          <p>The people behind BVR GLOBAL TECHNOLOGIES are passionate about building practical digital solutions that solve real-world business challenges
+          , working closely with you from the first conversation to launch.</p>
         </div>
 
         {/* ---------- Founder: photo + full details side by side ---------- */}

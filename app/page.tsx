@@ -94,10 +94,11 @@ export default function Home() {
           </button>
           <nav className={menuOpen ? "nav-links open" : "nav-links"}>
             <a href="#home" onClick={closeMenu}>Home</a>
-            <a href="#services" onClick={closeMenu}>Services</a>
-            <a href="#work" onClick={closeMenu}>Work</a>
-            <a href="#approach" onClick={closeMenu}>Our approach</a>
+            <a href="#work" onClick={closeMenu}>Services</a>
+            <a href="/projects" onClick={closeMenu}>Work</a>
             <a href="#about" onClick={closeMenu}>About</a>
+            <a href="#approach" onClick={closeMenu}>Our approach</a>
+            
             <a href="#team" onClick={closeMenu}>Team</a>
             <a className="nav-cta nav-apply" href="/apply" onClick={closeMenu}>
               Apply <ArrowUpRight size={16} />
@@ -119,8 +120,8 @@ export default function Home() {
               We design and develop digital solutions that help startups and small businesses move forward with confidence.
             </p>
             <div className="hero-actions">
-              <a className="button button-primary" href="#contact">Start a conversation <ArrowUpRight size={18} /></a>
-              <a className="text-link" href="#services">Explore what we do <ArrowRight size={17} /></a>
+              
+              <a className="text-link" href="#stats-section">Explore  <ArrowRight size={17} /></a>
             </div>
             <div className="hero-note"><span className="note-line" /> A technology partner for your next step.</div>
           </div>
@@ -147,7 +148,7 @@ export default function Home() {
           </div>
           <div className="intro-text">
             <p>
-              BVR Global Technologies Pvt. Ltd. is a software development company focused on helping startups and small businesses turn ideas and everyday challenges into practical digital solutions.
+              BVR GLOBAL TECHNOLOGIES Pvt. Ltd. is a software development company focused on helping startups and small businesses turn ideas and everyday challenges into practical digital solutions.
             </p>
             <p>
               We believe good technology is not about adding complexity. It is about understanding what matters, building with care and creating tools people can rely on.
@@ -158,7 +159,7 @@ export default function Home() {
       </section>
 
 
-      <section className="services section-pad" id="services">
+      {/* <section className="services section-pad" id="services">
         <div className="container">
           <div className="section-heading">
             <div><div className="section-kicker">WHAT WE DO</div><h2>Our <span>services.</span></h2></div>
@@ -179,7 +180,7 @@ export default function Home() {
             })}
           </div>
         </div>
-      </section>
+      </section> */}
 
       <WorkSlider />
 
@@ -229,7 +230,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="stats-section">
+      <section className="stats-section"  id="stats-section">
         <div className="container">
           <div className="stats-heading">
             <div className="section-kicker">OUR JOURNEY IN NUMBERS</div>
@@ -315,7 +316,7 @@ export default function Home() {
           <h2>Let's build something<br /><span>that moves you forward.</span></h2>
           <p>Tell us what you are working on. We would be glad to understand your idea and explore how we can help.</p>
           <a className="button button-light" target="_blank" rel="noopener noreferrer" href="https://mail.google.com/mail/?view=cm&fs=1&to=siddartharao3@gmail.com&su=Project%20Enquiry%20-%20BVR%20Global%20Technologies%20Pvt.%20Ltd.">
-            Start a conversation <ArrowUpRight size={18} />
+        Let's Connect <ArrowUpRight size={20} />
           </a>
 
         </div>
@@ -327,7 +328,7 @@ export default function Home() {
             <a className="brand brand-footer" href="#home"><span className="brand-mark">BVR<span>.</span></span><span className="brand-copy"><strong>BVR GLOBAL TECHNOLOGIES</strong><small>PRIVATE LIMITED</small></span></a>
             <p>Engineering ideas. Building possibilities.</p>
           </div>
-          <div className="footer-col"><b>EXPLORE</b><a href="#services">Services</a><a href="#work">Work</a><a href="#approach">Our approach</a><a href="#about">About us</a><a href="#team">Team</a></div>
+          <div className="footer-col"><b>EXPLORE</b><a href="#work">Services</a><a href="/projects">Work</a><a href="#approach">Our approach</a><a href="#about">About us</a><a href="#team">Team</a></div>
           <div className="footer-col"><b>GET IN TOUCH</b><a href="#contact">Start a project</a><span>Official contact details to be added</span></div>
         </div>
         <div className="container footer-bottom"><span>© {new Date().getFullYear()} BVR Global

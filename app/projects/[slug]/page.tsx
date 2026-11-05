@@ -50,6 +50,36 @@ export default async function ProjectPage({ params }: Props) {
                   {project.roles.map((r) => <span key={r}><i />{r}</span>)}
                 </div>
               )}
+
+                  {project.links && (project.links.live || project.links.github || project.links.apk) && (
+                <div className="pj-links">
+                  {project.links.live && (
+                    <a
+                      className="button button-primary"
+                      href={project.links.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Live demo <ArrowUpRight size={16} />
+                    </a>
+                  )}
+                  {project.links.github && (
+                    <a
+                      className="button"
+                      href={project.links.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      View code <ArrowUpRight size={16} />
+                    </a>
+                  )}
+                  {project.links.apk && (
+                    <a className="button button-primary" href={project.links.apk} download>
+                      Download APK <ArrowUpRight size={16} />
+                    </a>
+                  )}
+                </div>
+              )}
             </div>
             <div className="pj-visual"><ProjectArt kind={project.art} /></div>
           </article>
