@@ -46,7 +46,7 @@ export default function ProjectsPage() {
             <div className="section-kicker">HAVE A PROJECT IN MIND?</div>
             <h2>Let&apos;s build something <span>that moves you forward.</span></h2>
             <Link className="button button-light" href="/#contact">
-              Start a conversation <ArrowUpRight size={18} />
+              Let's Connect <ArrowUpRight size={18} />
             </Link>
           </div>
         </div>

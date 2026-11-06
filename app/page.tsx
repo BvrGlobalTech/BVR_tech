@@ -4,7 +4,12 @@ import { useState } from "react";
 import Motion from "@/components/Motion";
 import WorkSlider from "@/components/WorkSlider";
 import Founders from "@/components/Founders";
-
+import type { IconType } from "react-icons";
+import {
+  SiReact, SiNextdotjs, SiJavascript, SiTypescript,
+  SiNodedotjs, SiPython, SiMysql, SiMongodb,
+} from "react-icons/si";
+import { FaJava } from "react-icons/fa";
 import {
   ArrowRight, ArrowUpRight, Code2, Layers3, Menu, X, Workflow,
   ShieldCheck, Lightbulb, Check, Braces, Globe2, ChevronDown
@@ -35,8 +40,18 @@ const process = [
   ["03", "Build & test", "We develop in focused stages, share progress and test the solution as it takes shape."],
   ["04", "Launch & support", "We prepare your solution for launch and can provide ongoing support based on an agreed scope."],
 ];
-
-const technologies = ["React", "Next.js", "JavaScript", "TypeScript", "Node.js", "Python", "Java", "SQL"];
+const technologies: { name: string; icon: IconType; color?: string }[] = [
+  { name: "React Js", icon: SiReact, color: "#61DAFB" },
+  { name: "Next.js", icon: SiNextdotjs },                      // inherits text color
+  { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
+  { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
+  { name: "Node.js", icon: SiNodedotjs, color: "#5FA04E" },
+  { name: "Python", icon: SiPython, color: "#3776AB" },
+  { name: "Java", icon: FaJava, color: "#E76F00" },
+  { name: "MySQL", icon: SiMysql, color: "#4479A1" },
+  { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
+  { name: "React Native", icon: SiReact, color: "#61DAFB" },
+];
 
 const faqs = [
   ["What kind of businesses do you work with?", "We focus on startups and small businesses looking to build a website or custom software solution. Share your requirements and we can discuss whether we are a good fit."],
@@ -98,7 +113,7 @@ export default function Home() {
             <a href="/projects" onClick={closeMenu}>Work</a>
             <a href="#about" onClick={closeMenu}>About</a>
             <a href="#approach" onClick={closeMenu}>Our approach</a>
-            
+
             <a href="#team" onClick={closeMenu}>Team</a>
             <a className="nav-cta nav-apply" href="/apply" onClick={closeMenu}>
               Apply <ArrowUpRight size={16} />
@@ -117,10 +132,10 @@ export default function Home() {
             <div className="eyebrow"><span className="eyebrow-dot" /> SOFTWARE. STRATEGY. SOLUTIONS.</div>
             <h1>Ideas deserve<br /><span>great technology.</span></h1>
             <p className="hero-lead">
-              We design and develop digital solutions that help startups and small businesses move forward with confidence.
+              We design and develop AI-poweredweb apps, mobile apps, and custom software that help startups and small businesses move forward with confidence.
             </p>
             <div className="hero-actions">
-              
+
               <a className="text-link" href="#stats-section">Explore  <ArrowRight size={17} /></a>
             </div>
             <div className="hero-note"><span className="note-line" /> A technology partner for your next step.</div>
@@ -230,7 +245,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="stats-section"  id="stats-section">
+      <section className="stats-section" id="stats-section">
         <div className="container">
           <div className="stats-heading">
             <div className="section-kicker">OUR JOURNEY IN NUMBERS</div>
@@ -287,7 +302,14 @@ export default function Home() {
           <div><div className="section-kicker">OUR TECHNOLOGY TOOLKIT</div><h2>The right tools<br /><span>for the right job.</span></h2></div>
           <div className="stack-content">
             <p>Technology choices should follow the project requirements. Our toolkit can include technologies such as:</p>
-            <div className="tech-list">{technologies.map((tech) => <span key={tech}><Braces size={14} />{tech}</span>)}</div>
+            <div className="tech-list">
+              {technologies.map(({ name, icon: Icon, color }) => (
+                <span key={name}>
+                  <Icon size={16} color={color} />
+                  {name}
+                </span>
+              ))}
+            </div>
             <small className="stack-note">Specific technologies are selected based on project scope and team capability.</small>
           </div>
         </div>
@@ -316,7 +338,7 @@ export default function Home() {
           <h2>Let's build something<br /><span>that moves you forward.</span></h2>
           <p>Tell us what you are working on. We would be glad to understand your idea and explore how we can help.</p>
           <a className="button button-light" target="_blank" rel="noopener noreferrer" href="https://mail.google.com/mail/?view=cm&fs=1&to=siddartharao3@gmail.com&su=Project%20Enquiry%20-%20BVR%20Global%20Technologies%20Pvt.%20Ltd.">
-        Let's Connect <ArrowUpRight size={20} />
+            Let's Connect <ArrowUpRight size={20} />
           </a>
 
         </div>

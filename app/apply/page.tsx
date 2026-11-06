@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -7,6 +6,12 @@ import { ArrowLeft, ArrowUpRight, CheckCircle2, Loader2 } from "lucide-react";
 import { SubFooter, SubHeader } from "@/components/SubChrome";
 import Motion from "@/components/Motion";
 import "./apply.css";
+
+/* Formspree setup:
+   1. Create a form at https://formspree.io  -> you get https://formspree.io/f/abcdwxyz
+   2. In .env.local add:   NEXT_PUBLIC_FORMSPREE_APPLY_ID=abcdwxyz
+   3. Restart `npm run dev` (and add the same variable in your hosting dashboard). */
+const FORMSPREE_ID = process.env.NEXT_PUBLIC_FORMSPREE_APPLY_ID;
 
 type FormState = {
   name: string;
@@ -36,49 +41,32 @@ export default function ApplyPage() {
   const update = (key: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm((f) => ({ ...f, [key]: e.target.value }));
 
-  // const handleSubmit = async (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   setStatus("submitting");
-  //   setErrorMsg("");
-
-  //   try {
-  //     const res = await fetch("https://formspree.io/f/", {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json", Accept: "application/json" },
-  //       body: JSON.stringify(form),
-  //     });
-  //     if (!res.ok) throw new Error("Submission failed");
-  //     setStatus("success");
-  //     setForm(initial);
-  //   } catch (err) {
-  //     setStatus("error");
-  //     setErrorMsg("Something went wrong. Please try again or email us directly.");
-  //   }
-  // };
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setStatus("submitting");
-  setErrorMsg("");
+    e.preventDefault();
+    setErrorMsg("");
 
-  try {
-    const body = new URLSearchParams({
-      "form-name": "apply",
-      ...form,
-    }).toString();
+    if (!FORMSPREE_ID) {
+      setStatus("error");
+      setErrorMsg("The form is not set up yet. Please email us directly.");
+      return;
+    }
 
-    const res = await fetch("/__forms.html", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body,
-    });
-    if (!res.ok) throw new Error("Submission failed");
-    setStatus("success");
-    setForm(initial);
-  } catch (err) {
-    setStatus("error");
-    setErrorMsg("Something went wrong. Please try again or email us directly.");
-  }
-};
+    setStatus("submitting");
+
+    try {
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ _subject: `New application: ${form.name}`, ...form }),
+      });
+      if (!res.ok) throw new Error("Submission failed");
+      setStatus("success");
+      setForm(initial);
+    } catch {
+      setStatus("error");
+      setErrorMsg("Something went wrong. Please try again or email us directly.");
+    }
+  };
 
   if (status === "success") {
     return (
@@ -123,22 +111,23 @@ export default function ApplyPage() {
 
       <section className="ap-section">
         <div className="container ap-form-wrap">
-          <form className="ap-form" onSubmit={handleSubmit} noValidate>
+          {/* no noValidate: the browser now blocks empty required fields and bad emails/URLs */}
+          <form className="ap-form" onSubmit={handleSubmit}>
             <div className="ap-row">
               <div className="ap-field">
                 <label htmlFor="name">Full name *</label>
-                <input id="name" type="text"  name="name" required value={form.name} onChange={update("name")} placeholder="Your name" />
+                <input id="name" type="text" name="name" required autoComplete="name" value={form.name} onChange={update("name")} placeholder="Your name" />
               </div>
               <div className="ap-field">
                 <label htmlFor="mobile">Mobile number *</label>
-                <input id="mobile" type="tel" name="mobile" required value={form.mobile} onChange={update("mobile")} placeholder="+91 90000 00000" />
+                <input id="mobile" type="tel" name="mobile" required autoComplete="tel" value={form.mobile} onChange={update("mobile")} placeholder="+91 90000 00000" />
               </div>
             </div>
 
             <div className="ap-row">
               <div className="ap-field">
                 <label htmlFor="email">Email address *</label>
-                <input id="email" type="email" name="email" required value={form.email} onChange={update("email")} placeholder="you@example.com" />
+                <input id="email" type="email" name="email" required autoComplete="email" value={form.email} onChange={update("email")} placeholder="you@example.com" />
               </div>
               <div className="ap-field">
                 <label htmlFor="location">Location *</label>
@@ -158,11 +147,11 @@ export default function ApplyPage() {
 
             <div className="ap-field">
               <label htmlFor="resumeUrl">Resume link *</label>
-              <input id="resumeUrl" type="url" name="resumeUrl"  required value={form.resumeUrl} onChange={update("resumeUrl")} placeholder="Google Drive / Dropbox / portfolio link" />
+              <input id="resumeUrl" type="url" name="resumeUrl" required value={form.resumeUrl} onChange={update("resumeUrl")} placeholder="Google Drive / Dropbox / portfolio link" />
               <small className="ap-hint">Paste a shareable link to your resume (PDF). We&apos;ll review it from there.</small>
             </div>
 
-            {status === "error" && <p className="ap-error">{errorMsg}</p>}
+            {status === "error" && <p className="ap-error" role="alert">{errorMsg}</p>}
 
             <button className="button button-primary ap-submit" type="submit" disabled={status === "submitting"}>
               {status === "submitting" ? (

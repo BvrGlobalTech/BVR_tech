@@ -377,3 +377,11 @@
 }
 .nav-apply { margin-right: 8px; opacity: 0.85; }
 .nav-apply:hover { opacity: 1; }
+.tech-list span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.tech-list span svg {
+  flex-shrink: 0;
+}

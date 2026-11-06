@@ -9,7 +9,7 @@ import ProjectCard from "@/components/ProjectCard";
 import { SubFooter, SubHeader } from "@/components/SubChrome";
 import { projects } from "../data";
 import "../projects.css";
-
+import ShotsScroller from "@/components/ShotsScroller";
 type Props = { params: Promise<{ slug: string }> };
 
 export function generateStaticParams() {
@@ -145,13 +145,18 @@ export default async function ProjectPage({ params }: Props) {
               <div className="section-kicker">SCREENSHOTS</div>
               <h2 className="pj-h2">See it <span>in action.</span></h2>
             </div>
-            <div className="pj-shots">
-              {project.screenshots.map((s) => (
-                <figure className="pj-shot pj-reveal" key={s.alt}>
-                  <Image src={s.src} alt={s.alt} fill sizes="(max-width: 900px) 100vw, 560px" />
-                </figure>
-              ))}
-            </div>
+            <ShotsScroller>
+  {project.screenshots.map((s) => (
+    <figure className="pj-shot" key={s.alt}>
+      <Image
+        src={s.src}
+        alt={s.alt}
+        quality={90}
+        sizes="(max-width: 640px) 80vw, 400px"
+      />
+    </figure>
+  ))}
+</ShotsScroller>
           </div>
         </section>
       )}

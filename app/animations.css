@@ -804,3 +804,129 @@
   0%, 100% { border-color: #dce2ee; }
   40% { border-color: #637aff; box-shadow: 0 0 0 4px rgba(99, 122, 255, 0.18); }
 }
+.tech-list span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.tech-list span svg {
+  flex-shrink: 0;
+}
+/* =========================================================
+   FEATURED SLIDE (Website Development)
+   Paste at the END of the stylesheet that already contains
+   .slide / .slide-points (so these rules win on order).
+   Selectors are extra-specific, so they override the base look.
+   ========================================================= */
+
+/* the card: bright ring + glow so it leads the row */
+.slides-track .slide.slide-featured {
+  border-color: rgba(141, 160, 255, 0.85);
+  box-shadow:
+    0 0 0 1px rgba(141, 160, 255, 0.55),
+    0 30px 90px rgba(79, 99, 238, 0.5),
+    0 0 70px rgba(167, 139, 250, 0.28);
+}
+
+/* the other cards step back a little; full strength on hover */
+.slides-track .slide:not(.slide-featured) {
+  opacity: 0.88;
+  transition: opacity 0.3s ease;
+}
+.slides-track .slide:not(.slide-featured):hover { opacity: 1; }
+
+/* "Our specialty" badge */
+.slide-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 10px 10px 0;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  color: #07201c;
+  background: linear-gradient(120deg, #7ed8c0, #9aabff);
+  box-shadow: 0 8px 22px rgba(126, 216, 192, 0.3);
+}
+
+/* =========================================================
+   SLIDE STYLE (applies to ALL slides)
+   Paste at the END of the stylesheet that already contains
+   .slide / .slide-points (so these rules win on order).
+   If you pasted a previous version, delete it first.
+   ========================================================= */
+
+/* the card: bright ring + glow */
+.slides-track .slide {
+  border-color: rgba(141, 160, 255, 0.85);
+  box-shadow:
+    0 0 0 1px rgba(141, 160, 255, 0.55),
+    0 30px 90px rgba(79, 99, 238, 0.5),
+    0 0 70px rgba(167, 139, 250, 0.28);
+}
+
+/* more room around the text */
+.slides-track .slide .slide-body {
+  padding: clamp(26px, 3vw, 44px);
+}
+
+/* category: plain text, no pill */
+.slides-track .slide .slide-tag {
+  display: block;
+  padding: 0;
+  margin: 0 0 16px;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: 2.4px;
+  /* color: #7ed8c0; */
+  color: #eaebec;
+}
+
+/* headline: much larger */
+.slides-track .slide h3 {
+  margin: 0 0 18px;
+  font-size: clamp(10px, 1.8vw, 30px);
+  font-weight: 800;
+  line-height: 1.06;
+  letter-spacing: -1.8px;
+  background: linear-gradient(120deg, #f4aa71 30%, #b9c4ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* description: larger and brighter */
+.slides-track .slide .slide-body p {
+  font-size: clamp(16px, 1.4vw, 19px);
+  line-height: 1.7;
+  color: #d6def2;
+}
+
+/* features: a clean check list instead of button-like chips */
+.slides-track .slide .slide-points {
+  display: grid;
+  gap: 14px;
+  margin-top: 26px;
+  padding-top: 26px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+.slides-track .slide .slide-points span {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  font-size: clamp(16px, 1.35vw, 19px);
+  font-weight: 700;
+  color: #fff;
+}
+.slides-track .slide .slide-points svg { color: #7ed8c0; flex: none; }

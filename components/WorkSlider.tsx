@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState, type MouseEvent, type PointerEvent } from "react";
 import Image from "next/image";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import SlideArt, { type ArtKind } from "./SlideArt";
 
 type Slide = {
@@ -21,40 +21,43 @@ type Slide = {
 // Real capabilities from your services. No invented clients or numbers.
 const slides: Slide[] = [
   {
-    tag: "BUSINESS WEBSITES",
+    tag: "WEBSITE DEVELOPMENT",
     title: "Websites that make your offer clear",
-    text: "Fast, responsive sites that explain what you do and make it easy for customers to get in touch.",
-    points: ["Responsive design", "Clear structure", "Enquiry flow"],
+    text: "Fast, responsive websites that communicate what you do and make it simple for customers to get in touch.",
+    points: ["Responsive design", "Search optimization", "High performance"],
     bg: "linear-gradient(135deg,#4f63ee,#a58bff)",
     art: "website",
   },
   {
-    tag: "WEB APPLICATIONS",
-    title: "Web apps your customers can use",
-    text: "Interactive products with accounts, dashboards and the features your users actually need.",
-    points: ["Dashboards", "User accounts", "Database-backed"],
+    tag: "MOBILE APPLICATIONS",
+    title: "Mobile apps for iOS and Android",
+    text: "Reliable, user-focused apps that deliver a consistent experience across devices.",
+    points: ["Cross-platform", "Personalization", "Secure data"],
     bg: "linear-gradient(135deg,#6335ba,#6c83ff)",
-    art: "webapp",
+    art: "webapp", // swap to "mobile" if you add one to SlideArt
   },
   {
-    tag: "BUSINESS TOOLS",
-    title: "Internal tools that save time",
-    text: "Replace spreadsheets and manual steps with software built around the way your team works.",
-    points: ["Admin panels", "Reports", "Role-based access"],
+    tag: "CUSTOM SOFTWARE",
+    title: "Software tailored to your business",
+    text: "Solutions aligned with your processes, helping you improve efficiency and scale with confidence.",
+    points: ["Process automation", "API integration", "Scalable systems"],
     bg: "linear-gradient(135deg,#1fa38f,#4f63ee)",
-    art: "tools",
+    art: "workflow",
   },
   {
-    tag: "WORKFLOW & API",
-    title: "Systems that connect your work",
-    text: "Workflow platforms and API integrations that keep your tools and data working together.",
-    points: ["Workflow systems", "API integration", "Management platforms"],
-    bg: "linear-gradient(135deg,#e07a5f,#f2cc8f)",
-    art: "workflow",
+    tag: "AI INTEGRATIONS",
+    title: "AI that fits into your product",
+    text: "We add practical AI features to your website, app or internal software, so your team saves time and your customers get answers faster.",
+    points: ["Chat assistants", "Workflow automation", "Smart search and insights"],
+    bg: "linear-gradient(135deg,#c4488f,#6c83ff)",
+    art: "workflow", // reuses the workflow artwork; see note about adding an "ai" kind to SlideArt
   },
 ];
 
 const GAP = 22;
+const AUTOPLAY_DELAY = 9000; // first slide stays put long enough to make the first impression
+const AUTOPLAY_EVERY = 5000;
+
 const stepOf = (t: HTMLDivElement) => {
   const first = t.firstElementChild as HTMLElement | null;
   return first ? first.getBoundingClientRect().width + GAP : 1;
@@ -97,13 +100,19 @@ export default function WorkSlider() {
     if (t) setActive(Math.min(Math.round(t.scrollLeft / stepOf(t)), slides.length - 1));
   };
 
-  // Autoplay: pauses on hover/focus/touch, skipped for reduced motion
+  // Autoplay: waits before the first move, pauses on hover/focus/touch, skipped for reduced motion
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const id = window.setInterval(() => {
-      if (!paused.current && !document.hidden) go(1);
-    }, 5000);
-    return () => clearInterval(id);
+    let id: number | undefined;
+    const start = window.setTimeout(() => {
+      id = window.setInterval(() => {
+        if (!paused.current && !document.hidden) go(1);
+      }, AUTOPLAY_EVERY);
+    }, AUTOPLAY_DELAY);
+    return () => {
+      clearTimeout(start);
+      if (id) clearInterval(id);
+    };
   }, [go]);
 
   // Mouse drag (touch uses native swipe)
@@ -186,7 +195,12 @@ export default function WorkSlider() {
                   <h3>{s.title}</h3>
                   <p>{s.text}</p>
                   <div className="slide-points">
-                    {s.points.map((p) => <span key={p}>{p}</span>)}
+                    {s.points.map((p) => (
+                      <span key={p}>
+                        <Check size={20} strokeWidth={2.8} />
+                        {p}
+                      </span>
+                    ))}
                   </div>
                 </div>
               </article>

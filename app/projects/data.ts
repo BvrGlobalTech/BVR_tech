@@ -24,11 +24,17 @@ import {
   Download,
   History,
 } from "lucide-react";
+import eve from "./evetrack1.png";
+import eve1 from "./evetrack2.png";
+import eve2 from "./evetrack3.png";
 import adminPhoto from "./admin.png";
 import timetablePhoto from "./timetablegeneration.png";
 import resultPhoto from "./resultextracter.png";
 import jyotirlinga from "./jyotirlinga.png";
 import notebook from "./securenotebook.jpeg";
+import notebook1 from "./securenotebook2.jpeg";
+import notebook2 from "./securenotebook3.jpeg";
+import notebook3 from "./securenotebook4.jpeg";
 import type { StaticImageData } from "next/image";
 import type { ArtKind } from "@/components/ProjectArt";
 
@@ -114,10 +120,10 @@ export const projects: Project[] = [
     ],
     stack: [
       { label: "Frontend", items: ["React.js"] },
-      { label: "Backend", items: ["Node.js", "Express.js"] },
+      { label: "Backend", items: ["Node.js"] },
       { label: "Database", items: ["MongoDB"] },
-      { label: "Language", items: ["JavaScript"] },
-      { label: "Scheduling", items: ["Constraint Satisfaction", "Genetic Algorithm", "Greedy Algorithm"] },
+      // { label: "Language", items: ["JavaScript"] },
+      // { label: "Scheduling", items: ["Constraint Satisfaction", "Genetic Algorithm", "Greedy Algorithm"] },
     ],
     screenshots: [
        { src: adminPhoto, alt: "Admin panel" },
@@ -150,9 +156,8 @@ export const projects: Project[] = [
     stack: [
       { label: "Frontend", items: ["React.js"] },
       { label: "Backend", items: ["Node.js"] },
-      { label: "Database", items: ["SQL"] },
-      { label: "Input", items: ["Barcode scanner"] },
-      { label: "Reports", items: ["PDF generation"] },
+      { label: "Database", items: ["MySQL"] },
+   
     ],
     
   },
@@ -188,6 +193,11 @@ export const projects: Project[] = [
     ],
     screenshots: [
       { src: notebook, alt: "Secure Notebook app screenshot" },
+      { src: notebook1, alt: "Secure Notebook app screenshot1" },
+      { src: notebook2, alt: "Secure Notebook app screenshot2" },
+      { src: notebook3, alt: "Secure Notebook app screenshot3" }
+      
+
     ],
   },
   {
@@ -221,7 +231,9 @@ export const projects: Project[] = [
       { label: "Permissions", items: ["Location", "SMS"] },
     ],
     screenshots: [
-      // { src: "/projects/evetrack-1.png", alt: "SOS screen" },
+      { src: eve, alt: "SOS screen1" },
+      { src: eve1, alt: "SOS screen2" },
+      { src: eve2, alt: "SOS screen3" },
     ],
   },
   {
@@ -286,7 +298,7 @@ export const projects: Project[] = [
     stack: [
       { label: "Frontend", items: ["React.js"] },
       { label: "Backend", items: ["Node.js"] },
-      { label: "Database", items: ["(add yours)"] },
+      { label: "Database", items: ["MongoDb"] },
     ],
     screenshots: [
       // { src: "/projects/linkchat-1.png", alt: "Chat screen" },
@@ -315,10 +327,9 @@ export const projects: Project[] = [
       { icon: Smartphone, title: "Built for mobile", text: "Made with React Native, so the whole process happens from your phone." },
     ],
     stack: [
-      { label: "Mobile App", items: ["React Native"] },
-      { label: "Backend", items: ["Node.js"] },
-      { label: "Language", items: ["JavaScript"] },
-      { label: "Processing", items: ["RGB color inversion"] },
+      { label: "Forntend", items: ["React Native"] },
+      {label: "Backend", items: ["Node.js"] },
+    //  { label: "Processing", items: ["RGB color inversion"] },
     ],
     screenshots: [
       // { src: "/projects/negative-1.png", alt: "Negative and converted photo side by side" },
