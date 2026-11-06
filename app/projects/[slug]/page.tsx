@@ -19,8 +19,16 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const project = projects.find((p) => p.slug === slug);
+
   if (!project) return {};
-  return { title: `${project.title} | BVR Global Technologies`, description: project.summary };
+
+  return {
+    title: `${project.title} | BVR GLOBAL TECHNOLOGIES`,
+    description: project.summary,
+    alternates: {
+      canonical: `/projects/${project.slug}`,
+    },
+  };
 }
 
 export default async function ProjectPage({ params }: Props) {

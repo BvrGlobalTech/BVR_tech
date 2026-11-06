@@ -9,7 +9,11 @@ import "./projects.css";
 
 export const metadata: Metadata = {
   title: "Projects | BVR GLOBAL TECHNOLOGIES",
-  description: "A selection of projects built by BVR GLOBAL TECHNOLOGIES for startups and small businesses.",
+  description:
+    "A selection of projects built by BVR GLOBAL TECHNOLOGIES for startups and small businesses.",
+  alternates: {
+    canonical: "/projects",
+  },
 };
 
 export default function ProjectsPage() {
