@@ -16,7 +16,20 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body><script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "BVR GLOBAL TECHNOLOGIES PRIVATE LIMITED",
+      "alternateName": "BVR GLOBAL TECHNOLOGIES",
+      "url": "https://bvrglobaltechnologies.com/",
+      "logo": "https://bvrglobaltechnologies.com/icon.png"
+    })
+  }}
+/>
+        {children}</body>
     </html>
   );
 }
