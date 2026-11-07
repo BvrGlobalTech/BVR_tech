@@ -891,7 +891,7 @@
 /* headline: much larger */
 .slides-track .slide h3 {
   margin: 0 0 18px;
-  font-size: clamp(10px, 1.8vw, 30px);
+  font-size: clamp(10px, 2vw, 30px);
   font-weight: 800;
   line-height: 1.06;
   letter-spacing: -1.8px;
@@ -930,3 +930,6 @@
   color: #fff;
 }
 .slides-track .slide .slide-points svg { color: #7ed8c0; flex: none; }
+.count-up {
+  font-variant-numeric: tabular-nums;
+}

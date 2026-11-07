@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, ArrowUpRight, CheckCircle2, Loader2 } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, CheckCircle2, Loader2, Mail, Phone, MapPin, Clock } from "lucide-react";
 import { SubFooter, SubHeader } from "@/components/SubChrome";
 import Motion from "@/components/Motion";
 import "./apply.css";
@@ -21,6 +21,16 @@ type FormState = {
   about: string;
   skills: string;
   resumeUrl: string;
+};
+
+const contact = {
+  email: "bvrglobaltech@gmail.com",          // or a company email like hello@bvrglobal.com
+  phone: "+91 90599 44959 ",                   // display format
+  phoneHref: "+919059944959",                 
+  whatsapp: "919059944959",                   // country code + number, no + or spaces
+  address: "3-104/3/38 VSSD Nagar Road Number 3,Chengicherla, Hyderabad,Telengana, India 500098",
+  mapsUrl: "https://maps.app.goo.gl/CeWWbvabyoExzrP67?g_st=ac",
+  hours: "Mon – Sat, 9:00 AM – 5:00 PM IST",
 };
 
 const initial: FormState = {
@@ -110,61 +120,99 @@ export default function ApplyPage() {
       </section>
 
       <section className="ap-section">
-        <div className="container ap-form-wrap">
-          {/* no noValidate: the browser now blocks empty required fields and bad emails/URLs */}
-          <form className="ap-form" onSubmit={handleSubmit}>
-            <div className="ap-row">
-              <div className="ap-field">
-                <label htmlFor="name">Full name *</label>
-                <input id="name" type="text" name="name" required autoComplete="name" value={form.name} onChange={update("name")} placeholder="Your name" />
+        <div className="container ap-layout">
+          <div className="ap-form-wrap">
+            <form className="ap-form" onSubmit={handleSubmit}>
+              <div className="ap-row">
+                <div className="ap-field">
+                  <label htmlFor="name">Full name *</label>
+                  <input id="name" type="text" name="name" required autoComplete="name" value={form.name} onChange={update("name")} placeholder="Your name" />
+                </div>
+                <div className="ap-field">
+                  <label htmlFor="mobile">Mobile number *</label>
+                  <input id="mobile" type="tel" name="mobile" required autoComplete="tel" value={form.mobile} onChange={update("mobile")} placeholder="+91 90000 00000" />
+                </div>
               </div>
-              <div className="ap-field">
-                <label htmlFor="mobile">Mobile number *</label>
-                <input id="mobile" type="tel" name="mobile" required autoComplete="tel" value={form.mobile} onChange={update("mobile")} placeholder="+91 90000 00000" />
+
+              <div className="ap-row">
+                <div className="ap-field">
+                  <label htmlFor="email">Email address *</label>
+                  <input id="email" type="email" name="email" required autoComplete="email" value={form.email} onChange={update("email")} placeholder="you@example.com" />
+                </div>
+                <div className="ap-field">
+                  <label htmlFor="location">Location *</label>
+                  <input id="location" type="text" name="location" required value={form.location} onChange={update("location")} placeholder="City, Country" />
+                </div>
               </div>
-            </div>
 
-            <div className="ap-row">
               <div className="ap-field">
-                <label htmlFor="email">Email address *</label>
-                <input id="email" type="email" name="email" required autoComplete="email" value={form.email} onChange={update("email")} placeholder="you@example.com" />
+                <label htmlFor="about">About yourself *</label>
+                <textarea id="about" rows={4} name="about" required value={form.about} onChange={update("about")} placeholder="A short introduction — your background, interests and what you're looking for." />
               </div>
+
               <div className="ap-field">
-                <label htmlFor="location">Location *</label>
-                <input id="location" type="text" name="location" required value={form.location} onChange={update("location")} placeholder="City, Country" />
+                <label htmlFor="skills">Skills *</label>
+                <input id="skills" type="text" name="skills" required value={form.skills} onChange={update("skills")} placeholder="e.g. React, Node.js, MongoDB, UI design" />
               </div>
+
+              <div className="ap-field">
+                <label htmlFor="resumeUrl">Resume link *</label>
+                <input id="resumeUrl" type="url" name="resumeUrl" required value={form.resumeUrl} onChange={update("resumeUrl")} placeholder="Google Drive / Dropbox / portfolio link" />
+                <small className="ap-hint">Paste a shareable link to your resume (PDF). We&apos;ll review it from there.</small>
+              </div>
+
+              {status === "error" && <p className="ap-error" role="alert">{errorMsg}</p>}
+
+              <button className="button button-primary ap-submit" type="submit" disabled={status === "submitting"}>
+                {status === "submitting" ? (
+                  <>
+                    <Loader2 size={18} className="ap-spin" /> Submitting…
+                  </>
+                ) : (
+                  <>
+                    Submit application <ArrowUpRight size={18} />
+                  </>
+                )}
+              </button>
+            </form>
+          </div>
+
+          <aside className="ap-contact">
+            <h2>Get in touch</h2>
+            <p>Have questions before applying? Reach out to us directly.</p>
+
+            <a href={`mailto:${contact.email}`} className="ap-contact-row">
+              <span className="ap-contact-icon"><Mail size={18} /></span>
+              <span>
+                <small>Email</small>
+                <b>{contact.email}</b>
+              </span>
+            </a>
+
+            <a href={`tel:${contact.phoneHref}`} className="ap-contact-row">
+              <span className="ap-contact-icon"><Phone size={18} /></span>
+              <span>
+                <small>Phone</small>
+                <b>{contact.phone}</b>
+              </span>
+            </a>
+
+            <a href={contact.mapsUrl} target="_blank" rel="noopener noreferrer" className="ap-contact-row">
+              <span className="ap-contact-icon"><MapPin size={18} /></span>
+              <span>
+                <small>Office address</small>
+                <b>{contact.address}</b>
+              </span>
+            </a>
+
+            <div className="ap-contact-row">
+              <span className="ap-contact-icon"><Clock size={18} /></span>
+              <span>
+                <small>Business hours</small>
+                <b>{contact.hours}</b>
+              </span>
             </div>
-
-            <div className="ap-field">
-              <label htmlFor="about">About yourself *</label>
-              <textarea id="about" rows={4} name="about" required value={form.about} onChange={update("about")} placeholder="A short introduction — your background, interests and what you're looking for." />
-            </div>
-
-            <div className="ap-field">
-              <label htmlFor="skills">Skills *</label>
-              <input id="skills" type="text" name="skills" required value={form.skills} onChange={update("skills")} placeholder="e.g. React, Node.js, MongoDB, UI design" />
-            </div>
-
-            <div className="ap-field">
-              <label htmlFor="resumeUrl">Resume link *</label>
-              <input id="resumeUrl" type="url" name="resumeUrl" required value={form.resumeUrl} onChange={update("resumeUrl")} placeholder="Google Drive / Dropbox / portfolio link" />
-              <small className="ap-hint">Paste a shareable link to your resume (PDF). We&apos;ll review it from there.</small>
-            </div>
-
-            {status === "error" && <p className="ap-error" role="alert">{errorMsg}</p>}
-
-            <button className="button button-primary ap-submit" type="submit" disabled={status === "submitting"}>
-              {status === "submitting" ? (
-                <>
-                  <Loader2 size={18} className="ap-spin" /> Submitting…
-                </>
-              ) : (
-                <>
-                  Submit application <ArrowUpRight size={18} />
-                </>
-              )}
-            </button>
-          </form>
+          </aside>
         </div>
       </section>
 

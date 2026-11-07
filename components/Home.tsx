@@ -1,5 +1,5 @@
 "use client";
-
+import CountUp from "@/components/CountUp";
 import { useState } from "react";
 import Motion from "@/components/Motion";
 import WorkSlider from "@/components/WorkSlider";
@@ -9,12 +9,33 @@ import {
   SiReact, SiNextdotjs, SiJavascript, SiTypescript,
   SiNodedotjs, SiPython, SiMysql, SiMongodb,
 } from "react-icons/si";
-import { FaJava } from "react-icons/fa";
+
 import {
   ArrowRight, ArrowUpRight, Code2, Layers3, Menu, X, Workflow,
-  ShieldCheck, Lightbulb, Check, Braces, Globe2, ChevronDown
+  ShieldCheck, Lightbulb, Check, Braces, Globe2, ChevronDown,
+  Mail, Phone, MapPin
 } from "lucide-react";
 
+import { FaLinkedinIn, FaInstagram, FaGithub, FaWhatsapp } from "react-icons/fa";
+import { FaJava } from "react-icons/fa";
+
+
+const contact = {
+  email: "bvrglobaltech@gmail.com",          // or a company email like hello@bvrglobal.com
+  phone: "+91 90599 44959 ",                   // display format
+  phoneHref: "+919059944959",                 
+  whatsapp: "919059944959",                   // country code + number, no + or spaces
+  address: "3-104/3/38 VSSD Nagar Road Number 3,Chengicherla, Hyderabad,Telengana, India 500098",
+  mapsUrl: "https://maps.app.goo.gl/CeWWbvabyoExzrP67?g_st=ac",
+  hours: "Mon – Sat, 9:00 AM – 5:00 PM IST",
+};
+
+const socials = [
+  //{ label: "LinkedIn", href: "https://linkedin.com/company/your-page", icon: FaLinkedinIn },
+  { label: "Instagram", href: "https://www.instagram.com/bvrglobaltech?srtk=dncya3FrY25yOW83", icon: FaInstagram },
+ // { label: "GitHub", href: "https://github.com/BvrGlobalTech", icon: FaGithub },
+  { label: "WhatsApp", href: `https://wa.me/${contact.whatsapp}`, icon: FaWhatsapp },
+];
 const services = [
   {
     number: "01",
@@ -60,13 +81,13 @@ const faqs = [
 ];
 const stats = [
   {
-    number: "10+",
+    number: "50+",
     label: "Projects Completed",
     description: "Digital solutions delivered",
     href: "/projects",
   },
   {
-    number: "02+",
+    number: "15+",
     label: "Happy Clients",
     description: "Businesses we've worked with",
   },
@@ -77,12 +98,12 @@ const stats = [
     href: "#technologies",
   },
   {
-    number: "5+",
+    number: "20+",
     label: "Solutions Built",
     description: "Ideas transformed into products",
   },
   {
-    number: "15",                       // use your real number
+    number: "10",                       // use your real number
     label: "Employees",
     description: "People building with us",
   },
@@ -132,7 +153,7 @@ export default function Home() {
             <div className="eyebrow"><span className="eyebrow-dot" /> SOFTWARE. STRATEGY. SOLUTIONS.</div>
             <h1>Ideas deserve<br /><span>great technology.</span></h1>
             <p className="hero-lead">
-              We design and develop AI-poweredweb apps, mobile apps, and custom software that help startups and small businesses move forward with confidence.
+              We design and develop AI-powered web apps, mobile apps, and custom software that help startups and small businesses move forward with confidence.
             </p>
             <div className="hero-actions">
 
@@ -217,6 +238,24 @@ export default function Home() {
           </div>
         </div>
       </section>
+        
+      <section className="stack section-pad" id="technologies">
+        <div className="container stack-inner">
+          <div><div className="section-kicker">OUR TECHNOLOGY TOOLKIT</div><h2>The right tools<br /><span>for the right job.</span></h2></div>
+          <div className="stack-content">
+            <p>Technology choices should follow the project requirements. Our toolkit can include technologies such as:</p>
+            <div className="tech-list">
+              {technologies.map(({ name, icon: Icon, color }) => (
+                <span key={name}>
+                  <Icon size={16} color={color} />
+                  {name}
+                </span>
+              ))}
+            </div>
+            <small className="stack-note">Specific technologies are selected based on project scope and team capability.</small>
+          </div>
+        </div>
+      </section>
 
       <section className="why section-pad">
         <div className="container why-grid">
@@ -261,7 +300,8 @@ export default function Home() {
             {stats.map((stat) => {
               const body = (
                 <>
-                  <h3>{stat.number}</h3>
+                  {/* <h3>{stat.number}</h3> */}
+                  <h3><CountUp value={stat.number} /></h3>
                   <h4>{stat.label}</h4>
                   <p>{stat.description}</p>
 
@@ -294,26 +334,11 @@ export default function Home() {
 
         </div>
       </section>
+      
 
       <Founders />
 
-      <section className="stack section-pad" id="technologies">
-        <div className="container stack-inner">
-          <div><div className="section-kicker">OUR TECHNOLOGY TOOLKIT</div><h2>The right tools<br /><span>for the right job.</span></h2></div>
-          <div className="stack-content">
-            <p>Technology choices should follow the project requirements. Our toolkit can include technologies such as:</p>
-            <div className="tech-list">
-              {technologies.map(({ name, icon: Icon, color }) => (
-                <span key={name}>
-                  <Icon size={16} color={color} />
-                  {name}
-                </span>
-              ))}
-            </div>
-            <small className="stack-note">Specific technologies are selected based on project scope and team capability.</small>
-          </div>
-        </div>
-      </section>
+      
 
       <section className="faq section-pad">
         <div className="container faq-grid">
@@ -344,18 +369,58 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="footer">
-        <div className="container footer-main">
-          <div className="footer-brand">
-            <a className="brand brand-footer" href="#home"><span className="brand-mark">BVR<span>.</span></span><span className="brand-copy"><strong>BVR GLOBAL TECHNOLOGIES</strong><small>PRIVATE LIMITED</small></span></a>
-            <p>Engineering ideas. Building possibilities.</p>
-          </div>
-          <div className="footer-col"><b>EXPLORE</b><a href="#work">Services</a><a href="/projects">Work</a><a href="#approach">Our approach</a><a href="#about">About us</a><a href="#team">Team</a></div>
-          <div className="footer-col"><b>GET IN TOUCH</b><a href="#contact">Start a project</a><span>Official contact details to be added</span></div>
-        </div>
-        <div className="container footer-bottom"><span>© {new Date().getFullYear()} BVR Global
-          Technologies Pvt. Ltd.</span><span>Designed with purpose. Built for possibility.</span></div>
-      </footer>
+     <footer className="footer">
+  <div className="container footer-main">
+    <div className="footer-brand">
+      <a className="brand brand-footer" href="#home">
+        <span className="brand-mark">BVR<span>.</span></span>
+        <span className="brand-copy">
+          <strong>BVR GLOBAL TECHNOLOGIES</strong>
+          <small>PRIVATE LIMITED</small>
+        </span>
+      </a>
+      <p>Engineering ideas. Building possibilities.</p>
+
+      <div className="footer-socials">
+        {socials.map(({ label, href, icon: Icon }) => (
+          <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}>
+            <Icon size={16} />
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <div className="footer-col">
+      <b>EXPLORE</b>
+      <a href="#work">Services</a>
+      <a href="/projects">Work</a>
+      <a href="#approach">Our approach</a>
+      <a href="#about">About us</a>
+      <a href="#team">Team</a>
+    </div>
+
+    <div className="footer-col footer-contact">
+      <b>GET IN TOUCH</b>
+      <a href="#contact">Start a project</a>
+
+      <a href={`mailto:${contact.email}`} className="contact-row">
+        <Mail size={15} /> <span>{contact.email}</span>
+      </a>
+      <a href={`tel:${contact.phoneHref}`} className="contact-row">
+        <Phone size={15} /> <span>{contact.phone}</span>
+      </a>
+      <a href={contact.mapsUrl} target="_blank" rel="noopener noreferrer" className="contact-row">
+        <MapPin size={15} /> <span>{contact.address}</span>
+      </a>
+      <span className="contact-hours">{contact.hours}</span>
+    </div>
+  </div>
+
+  <div className="container footer-bottom">
+    <span>© {new Date().getFullYear()} BVR Global Technologies Pvt. Ltd.</span>
+    <span>Designed with purpose. Built for possibility.</span>
+  </div>
+</footer>
     </main>
   );
 }
