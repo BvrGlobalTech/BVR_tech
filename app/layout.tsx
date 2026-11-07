@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/og-image.png", // becomes https://bvrglobaltechnologies.com/og-image.png
+        url: "/og-image.jpg", // becomes https://bvrglobaltechnologies.com/og-image.png
         width: 1200,
         height: 630,
         alt: "BVR Global Technologies",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     title: "BVR GLOBAL TECHNOLOGIES | Software That Moves Business Forward",
     description:
       "Modern websites and custom software solutions for startups and small businesses.",
-    images: ["/og-image.png"],
+    images: ["/og-image.jpg"],
   },
 };
 
