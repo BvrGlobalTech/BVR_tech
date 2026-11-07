@@ -421,6 +421,18 @@ export default function Home() {
     <span>Designed with purpose. Built for possibility.</span>
   </div>
 </footer>
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "BVR GLOBAL TECHNOLOGIES",
+      "alternateName": "BVR",
+      "url": "https://bvrglobaltechnologies.com/"
+    })
+  }}
+/>c:\Users\vaish\Downloads\icon.png
     </main>
   );
 }
