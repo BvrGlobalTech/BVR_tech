@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     icon: [
       { url: "/icon.png", type: "image/png", sizes: "512x512" },
     ],
-    apple: "/apple-icon.png", // remove this line if you don't have the file
+    //apple: "/apple-icon.png", // remove this line if you don't have the file
   },
 
   openGraph: {
@@ -27,6 +27,22 @@ export const metadata: Metadata = {
       "Modern websites and custom software solutions for startups and small businesses.",
     url: SITE_URL,
     type: "website",
+    images: [
+      {
+        url: "/og-image.png", // becomes https://bvrglobaltechnologies.com/og-image.png
+        width: 1200,
+        height: 630,
+        alt: "BVR Global Technologies",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "BVR GLOBAL TECHNOLOGIES | Software That Moves Business Forward",
+    description:
+      "Modern websites and custom software solutions for startups and small businesses.",
+    images: ["/og-image.png"],
   },
 };
 
