@@ -13,13 +13,7 @@ export const metadata: Metadata = {
 
   applicationName: "BVR Global Technologies",
 
-  icons: {
-    icon: [
-      { url: "/icon.png", type: "image/png", sizes: "512x512" },
-    ],
-    //apple: "/apple-icon.png", // remove this line if you don't have the file
-  },
-
+  
   openGraph: {
     siteName: "BVR Global Technologies",
     title: "BVR GLOBAL TECHNOLOGIES | Software That Moves Business Forward",
