@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Script from "next/script";
 import "./animations.css";
+const GA_ID = "G-DJCTKW4ZJ7";
 
 const SITE_URL = "https://bvrglobaltechnologies.com";
 
@@ -69,6 +71,23 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+      <Script
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+        strategy="afterInteractive"
+      />
+       <Script
+        id="google-analytics"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_ID}');
+          `,
+        }}
+      />
+
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
