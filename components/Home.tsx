@@ -9,7 +9,11 @@ import {
   SiReact, SiNextdotjs, SiJavascript, SiTypescript,
   SiNodedotjs, SiPython, SiMysql, SiMongodb,
 } from "react-icons/si";
-
+import {
+  SiCloudflare,
+  SiFirebase,
+} from "react-icons/si";
+import { FaAws } from "react-icons/fa";
 import {
   ArrowRight, ArrowUpRight, Code2, Layers3, Menu, X, Workflow,
   ShieldCheck, Lightbulb, Check, Braces, Globe2, ChevronDown,
@@ -63,7 +67,7 @@ const process = [
 ];
 const technologies: { name: string; icon: IconType; color?: string }[] = [
   { name: "React Js", icon: SiReact, color: "#61DAFB" },
-  { name: "Next.js", icon: SiNextdotjs },                      // inherits text color
+  { name: "Next.js", icon: SiNextdotjs },
   { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
   { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
   { name: "Node.js", icon: SiNodedotjs, color: "#5FA04E" },
@@ -72,6 +76,9 @@ const technologies: { name: string; icon: IconType; color?: string }[] = [
   { name: "MySQL", icon: SiMysql, color: "#4479A1" },
   { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
   { name: "React Native", icon: SiReact, color: "#61DAFB" },
+  { name: "Cloudflare", icon: SiCloudflare, color: "#F38020" },
+  { name: "AWS", icon: FaAws, color: "#FF9900" },
+  { name: "Firebase", icon: SiFirebase, color: "#FFCA28" },
 ];
 
 const faqs = [
