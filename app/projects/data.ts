@@ -23,6 +23,14 @@ import {
   Palette,
   Download,
   History,
+  ShoppingBag,
+Search,
+Heart,
+Store,
+ImagePlus,
+SlidersHorizontal,
+
+UserRound,
 } from "lucide-react";
 import eve from "./evetrack1.png";
 import eve1 from "./evetrack2.png";
@@ -90,77 +98,159 @@ export type Project = {
    },
 ------------------------------------------------------------------ */
 export const projects: Project[] = [
-  {
-    slug: "timetable-attendance",
-    title: "Academic Management System",
+   
+    {
+  slug: "near-and-found",
+  title: "Near & Found",
+  category: "Full-Stack Online Marketplace",
+  summary:
+    "A location-focused online marketplace that connects buyers and sellers, making it easier to discover, list and find products available nearby.",
+
+  tags: ["Next.js", "Express.js", "Supabase", "PostgreSQL"],
+  art: "web",
+
+  description:
+    "Near & Found is a full-stack online marketplace designed to connect buyers with sellers in their local areas. It provides a platform where sellers can publish product listings and buyers can discover products based on their interests, categories and city.",
+
+  overview: [
+    "The platform supports two primary user roles: buyers and sellers. Users can register and log in securely, browse available products, search listings, apply filters and explore product details.",
+
+    "Buyers can save products to their wishlist and contact sellers directly when interested in an item. Sellers can manage their marketplace presence through a dedicated dashboard, where they can publish products and manage their listings.",
+
+    "The application uses a separate frontend and backend architecture. The frontend is built with Next.js, React and TypeScript, while the backend uses Node.js and Express.js to handle APIs, authentication and marketplace operations. Supabase PostgreSQL manages relational data, while Supabase Storage handles product images.",
+
+    "The application is deployed using Render for the frontend and backend, with Supabase providing managed database and image storage services.",
+  ],
+
+  roles: ["Buyer", "Seller"],
+  links: {
+      live: "https://near-and-found-frontend.onrender.com",
+    },
+
+  features: [
+    {
+      icon: UserRound,
+      title: "User Authentication",
+      text: "User registration and login with JWT-based authentication and bcryptjs password hashing.",
+    },
+    {
+      icon: Store,
+      title: "Buyer & Seller Roles",
+      text: "Separate buyer and seller experiences with role-based access to marketplace functionality.",
+    },
+    {
+      icon: ShoppingBag,
+      title: "Product Listings",
+      text: "Browse marketplace products with relevant information, descriptions and images.",
+    },
+    {
+      icon: Search,
+      title: "Product Search",
+      text: "Search for products to discover relevant listings across the marketplace.",
+    },
+    {
+      icon: SlidersHorizontal,
+      title: "Filtering & Sorting",
+      text: "Refine product discovery using category filters, city filters and product sorting.",
+    },
+    {
+      icon: ImagePlus,
+      title: "Product Image Uploads",
+      text: "Upload product images using Multer and store images through Supabase Storage.",
+    },
+    {
+      icon: Heart,
+      title: "Wishlist",
+      text: "Save interesting products to a personal wishlist for convenient access later.",
+    },
+    {
+      icon: Store,
+      title: "Seller Dashboard",
+      text: "A dedicated dashboard for sellers to manage their marketplace listings.",
+    },
+    {
+      icon: Upload,
+      title: "Product Publishing",
+      text: "Allow sellers to publish products with descriptions, categories and images.",
+    },
+    {
+      icon: Database,
+      title: "Product Management",
+      text: "Manage published product listings, including product deletion.",
+    },
+    {
+      icon: MessageCircle,
+      title: "Contact Seller",
+      text: "Enable buyers to contact sellers directly about products they are interested in.",
+    },
+  ],
+
+  stack: [
+    {
+      label: "Frontend",
+      items: [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Framer Motion",
+        "Lucide React",
+      ],
+    },
+    {
+      label: "Backend",
+      items: ["Node.js", "Express.js", "JWT", "bcryptjs", "Multer"],
+    },
+    {
+      label: "Database & Storage",
+      items: ["Supabase PostgreSQL", "Supabase Storage", "pg"],
+    },
+    {
+      label: "Deployment",
+      items: [
+        "Render (Frontend)",
+        "Render (Backend)",
+        "Supabase (Database & Storage)",
+      ],
+    },
+  ],
+
+  screenshots: [],
+},
+
+    {
+      slug: "linkchat",
+    title: "LinkChat",
     category: "Full-Stack Web Application",
     summary:
-      "A role-based academic platform for timetable scheduling, attendance tracking and academic information management.",
-    tags: ["React.js", "Node.js", "Express.js", "MongoDB"],
-    art: "timetable",
+      "A chat app that connects people through a unique personal ID instead of a phone number, so you only talk to people you choose to share it with.",
+    tags: ["React.js", "Node.js", "Chat App", "Privacy"],
+    art: "generic",
+    
     description:
-      "A role-based academic management application designed to simplify timetable scheduling, attendance tracking and academic information management for administrators, faculty and students.",
+      "A web-based messaging application where every user gets a unique ID instead of linking their account to a mobile number. Share your ID with someone and you can start chatting, with no phone number exchange and no flood of unwanted requests.",
     overview: [
-      "The application provides a centralized platform for managing academic activities through separate Admin, Faculty and Student interfaces. It includes automated timetable generation using Constraint Satisfaction, Genetic Algorithm and Greedy approaches, helping organize academic schedules while considering scheduling constraints.",
-      "It also supports attendance management, academic topic and notes sharing, faculty free-hour tracking and automated subject-wise result extraction to generate SGPA and CGPA insights.",
+      "Most chat apps are built around phone numbers, which means anyone who has your number can find you and send requests. LinkChat replaces this with a unique ID assigned to each user.",
+      "Users connect only when someone shares their ID with them. This keeps personal phone numbers private and cuts down on spam and repeated connection requests, giving users more control over who can reach them.",
     ],
-    roles: ["Admin", "Faculty", "Student"],
     features: [
-      { icon: Users, title: "Role-based access", text: "Separate Admin, Faculty and Student interfaces, each focused on what that person needs." },
-      { icon: CalendarDays, title: "Automated timetables", text: "Schedules generated using Constraint Satisfaction, Genetic Algorithm and Greedy approaches." },
-      { icon: Clock, title: "Free-hour tracking", text: "Faculty free hours tracked alongside timetable management." },
-      { icon: ClipboardCheck, title: "Attendance management", text: "Attendance tracking for academic activities, handled in one place." },
-      { icon: BookOpen, title: "Notes & topics sharing", text: "Academic topics and notes shared through the application." },
-      { icon: GraduationCap, title: "Result insights", text: "Subject-wise results extracted automatically to give SGPA and CGPA insights." },
-    ],
-    approaches: [
-      { kind: "csp", title: "Constraint Satisfaction", text: "Treats scheduling rules as constraints that a valid timetable has to satisfy." },
-      { kind: "ga", title: "Genetic Algorithm", text: "Evolves many candidate timetables, keeping and combining the best ones." },
-      { kind: "greedy", title: "Greedy Approach", text: "Builds a timetable step by step, making the best available choice at each stage." },
+      { icon: Fingerprint, title: "Unique user ID", text: "Every user gets their own ID, so no phone number is needed to sign up or connect." },
+      { icon: Share2, title: "Connect by sharing your ID", text: "Share your ID with someone and they can start a chat with you." },
+      { icon: MessageCircle, title: "One-to-one chat", text: "Send and receive messages with your connections in a simple chat interface." },
+      { icon: BellOff, title: "Fewer unwanted requests", text: "Because only people who have your ID can reach you, spam and repeated requests are avoided." },
+      { icon: PhoneOff, title: "Phone number stays private", text: "Your mobile number is never shared with the people you chat with." },
+      { icon: ShieldCheck, title: "Privacy-focused", text: "Designed around giving users control over who can contact them." },
     ],
     stack: [
       { label: "Frontend", items: ["React.js"] },
       { label: "Backend", items: ["Node.js"] },
-      { label: "Database", items: ["MongoDB"] },
-      // { label: "Language", items: ["JavaScript"] },
-      // { label: "Scheduling", items: ["Constraint Satisfaction", "Genetic Algorithm", "Greedy Algorithm"] },
+      { label: "Database", items: ["MongoDb"] },
     ],
     screenshots: [
-       { src: adminPhoto, alt: "Admin panel" },
-       { src: timetablePhoto, alt: "Timetable generation screen" },
-       { src: resultPhoto, alt: "Result extraction screen" },
+      // { src: "/projects/linkchat-1.png", alt: "Chat screen" },
     ],
   },
-  {
-    slug: "late-comer-barcode-scanner",
-    title: "Student Entry Management System",
-    category: "Full-Stack Web Application",
-    summary:
-      "A barcode-based system that records late-coming students at the college gate in one scan and generates branch-wise PDF reports automatically.",
-    tags: ["React.js", "Node.js", "SQL", "Barcode Scanning"],
-    art: "web",
-    description:
-      "A web application that replaces manual late-entry registers at the college gate. Security staff scan a student's ID barcode and the entry is recorded instantly, sorted by branch and ready for reporting.",
-    overview: [
-      "Late entries at the gate were being written down by hand, which was slow for security staff, made students even later, and gave some students a chance to slip away. Compiling the data into branch-wise reports afterwards was another manual job.",
-      "This system fixes that: the security staff simply scan each late student's ID card. The record is saved to the database, grouped by branch, roll numbers are organised automatically, and the number of times each student has been scanned is tracked and displayed. Reports can be downloaded as PDFs.",
-    ],
-    features: [
-      { icon: ScanBarcode, title: "One-scan entry", text: "Scan the student ID barcode and the late entry is recorded with no manual typing." },
-      { icon: Zap, title: "Faster at the gate", text: "Removes manual writing, so late students are processed quickly and can't slip away unrecorded." },
-      { icon: Layers, title: "Branch-wise records", text: "Entries are automatically organised by branch as they are scanned." },
-      { icon: Hash, title: "Roll numbers & scan count", text: "Roll numbers are sorted automatically and the system shows how many times each student has been scanned." },
-      { icon: FileDown, title: "Downloadable PDF reports", text: "Generate branch-wise late-comer reports as PDFs with one click." },
-      { icon: Database, title: "Persistent storage", text: "All entries are stored in a SQL database for reliable record keeping." },
-    ],
-    stack: [
-      { label: "Frontend", items: ["React.js"] },
-      { label: "Backend", items: ["Node.js"] },
-      { label: "Database", items: ["MySQL"] },
-   
-    ],
-    
-  },
+ 
   {
     slug: "secure-notebook",
     title: "Secure Notebook",
@@ -272,37 +362,77 @@ export const projects: Project[] = [
       { src: jyotirlinga, alt: "India map landing page" },
     ],
   },
-  {
-    slug: "linkchat",
-    title: "LinkChat",
+ 
+   {
+    slug: "timetable-attendance",
+    title: "Academic Management System",
     category: "Full-Stack Web Application",
     summary:
-      "A chat app that connects people through a unique personal ID instead of a phone number, so you only talk to people you choose to share it with.",
-    tags: ["React.js", "Node.js", "Chat App", "Privacy"],
-    art: "generic",
-    
+      "A role-based academic platform for timetable scheduling, attendance tracking and academic information management.",
+    tags: ["React.js", "Node.js", "Express.js", "MongoDB"],
+    art: "timetable",
     description:
-      "A web-based messaging application where every user gets a unique ID instead of linking their account to a mobile number. Share your ID with someone and you can start chatting, with no phone number exchange and no flood of unwanted requests.",
+      "A role-based academic management application designed to simplify timetable scheduling, attendance tracking and academic information management for administrators, faculty and students.",
     overview: [
-      "Most chat apps are built around phone numbers, which means anyone who has your number can find you and send requests. LinkChat replaces this with a unique ID assigned to each user.",
-      "Users connect only when someone shares their ID with them. This keeps personal phone numbers private and cuts down on spam and repeated connection requests, giving users more control over who can reach them.",
+      "The application provides a centralized platform for managing academic activities through separate Admin, Faculty and Student interfaces. It includes automated timetable generation using Constraint Satisfaction, Genetic Algorithm and Greedy approaches, helping organize academic schedules while considering scheduling constraints.",
+      "It also supports attendance management, academic topic and notes sharing, faculty free-hour tracking and automated subject-wise result extraction to generate SGPA and CGPA insights.",
     ],
+    roles: ["Admin", "Faculty", "Student"],
     features: [
-      { icon: Fingerprint, title: "Unique user ID", text: "Every user gets their own ID, so no phone number is needed to sign up or connect." },
-      { icon: Share2, title: "Connect by sharing your ID", text: "Share your ID with someone and they can start a chat with you." },
-      { icon: MessageCircle, title: "One-to-one chat", text: "Send and receive messages with your connections in a simple chat interface." },
-      { icon: BellOff, title: "Fewer unwanted requests", text: "Because only people who have your ID can reach you, spam and repeated requests are avoided." },
-      { icon: PhoneOff, title: "Phone number stays private", text: "Your mobile number is never shared with the people you chat with." },
-      { icon: ShieldCheck, title: "Privacy-focused", text: "Designed around giving users control over who can contact them." },
+      { icon: Users, title: "Role-based access", text: "Separate Admin, Faculty and Student interfaces, each focused on what that person needs." },
+      { icon: CalendarDays, title: "Automated timetables", text: "Schedules generated using Constraint Satisfaction, Genetic Algorithm and Greedy approaches." },
+      { icon: Clock, title: "Free-hour tracking", text: "Faculty free hours tracked alongside timetable management." },
+      { icon: ClipboardCheck, title: "Attendance management", text: "Attendance tracking for academic activities, handled in one place." },
+      { icon: BookOpen, title: "Notes & topics sharing", text: "Academic topics and notes shared through the application." },
+      { icon: GraduationCap, title: "Result insights", text: "Subject-wise results extracted automatically to give SGPA and CGPA insights." },
+    ],
+    approaches: [
+      { kind: "csp", title: "Constraint Satisfaction", text: "Treats scheduling rules as constraints that a valid timetable has to satisfy." },
+      { kind: "ga", title: "Genetic Algorithm", text: "Evolves many candidate timetables, keeping and combining the best ones." },
+      { kind: "greedy", title: "Greedy Approach", text: "Builds a timetable step by step, making the best available choice at each stage." },
     ],
     stack: [
       { label: "Frontend", items: ["React.js"] },
       { label: "Backend", items: ["Node.js"] },
-      { label: "Database", items: ["MongoDb"] },
+      { label: "Database", items: ["MongoDB"] },
+      // { label: "Language", items: ["JavaScript"] },
+      // { label: "Scheduling", items: ["Constraint Satisfaction", "Genetic Algorithm", "Greedy Algorithm"] },
     ],
     screenshots: [
-      // { src: "/projects/linkchat-1.png", alt: "Chat screen" },
+       { src: adminPhoto, alt: "Admin panel" },
+       { src: timetablePhoto, alt: "Timetable generation screen" },
+       { src: resultPhoto, alt: "Result extraction screen" },
     ],
+  },
+  {
+    slug: "late-comer-barcode-scanner",
+    title: "Student Entry Management System",
+    category: "Full-Stack Web Application",
+    summary:
+      "A barcode-based system that records late-coming students at the college gate in one scan and generates branch-wise PDF reports automatically.",
+    tags: ["React.js", "Node.js", "SQL", "Barcode Scanning"],
+    art: "web",
+    description:
+      "A web application that replaces manual late-entry registers at the college gate. Security staff scan a student's ID barcode and the entry is recorded instantly, sorted by branch and ready for reporting.",
+    overview: [
+      "Late entries at the gate were being written down by hand, which was slow for security staff, made students even later, and gave some students a chance to slip away. Compiling the data into branch-wise reports afterwards was another manual job.",
+      "This system fixes that: the security staff simply scan each late student's ID card. The record is saved to the database, grouped by branch, roll numbers are organised automatically, and the number of times each student has been scanned is tracked and displayed. Reports can be downloaded as PDFs.",
+    ],
+    features: [
+      { icon: ScanBarcode, title: "One-scan entry", text: "Scan the student ID barcode and the late entry is recorded with no manual typing." },
+      { icon: Zap, title: "Faster at the gate", text: "Removes manual writing, so late students are processed quickly and can't slip away unrecorded." },
+      { icon: Layers, title: "Branch-wise records", text: "Entries are automatically organised by branch as they are scanned." },
+      { icon: Hash, title: "Roll numbers & scan count", text: "Roll numbers are sorted automatically and the system shows how many times each student has been scanned." },
+      { icon: FileDown, title: "Downloadable PDF reports", text: "Generate branch-wise late-comer reports as PDFs with one click." },
+      { icon: Database, title: "Persistent storage", text: "All entries are stored in a SQL database for reliable record keeping." },
+    ],
+    stack: [
+      { label: "Frontend", items: ["React.js"] },
+      { label: "Backend", items: ["Node.js"] },
+      { label: "Database", items: ["MySQL"] },
+   
+    ],
+    
   },
   {
     slug: "photo-negative-converter",
